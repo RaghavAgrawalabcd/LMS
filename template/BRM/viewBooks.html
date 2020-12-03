@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+<title>Book Management System</title>
+<link rel="stylesheet" href="{%static 'css/book.css' %}">
+</head>
+<body>
+<div id="header">
+    <h1>Book Record Management System</h1>
+    <div id="nev">
+        <a href="/BRM/viewBook" >View All Books</a>
+        <a href="/BRM/searchBook" >Search Books</a>
+        <a href="/BRM/newBook" > Add New Books</a>
+    </div>
+</div>
+<div  id="main">
+    <h2>View books record</h2>
+ <TABLE>
+     <thead>
+     <th>Bcode</th>
+     <th>Btitle</th>
+     <th>Bauthor</th>
+     <th>Bpublisher</th>
+     </thead>
+     {%for ss in value%}
+     <tr>
+         <td>{{ss.Bcode}}</td>
+         <td>{{ss.Btitle}}</td>
+         <td>{{ss.Bauthor}}</td>
+         <td>{{ss.Bpublisher}}</td>
+         <td>><a class="btn" href="BRM/edit?id={{ss.Bcode}}">Edit</a> </td>
+         <td>><a class="btn" href="BRM/delete?id={{ss.Bcode}}">Delete</a> </td>
+     </tr>
+     {% endfor %}
+
+ </TABLE>
+</div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+<title>Book Management System</title>
+<link rel="stylesheet" href="{%static 'css/book.css' %}">
+</head>
+<body>
+<div id="header">
+    <h1>Book Record Management System</h1>
+    <div id="nev">
+        <a href="/BRM/viewBook" >View All Book</a>
+        <a href="/BRM/searchBook" >Search Book</a>
+        <a href="/BRM/newBook" > Add New Book</a>
+    </div>
+</div>
+<div  id="main">
+    <h2>Search  book </h2>
+    <form action="/BRM/search" method="POST">
+        {%csrf_token%}
+        {{form}}
+        <input type="submit" value="Search">
+    </form>
+    {% if book %}
+     <TABLE>
+     <thead>
+     <th>Bcode</th>
+     <th>Btitle</th>
+     <th>Bauthor</th>
+     <th>Bpublisher</th>
+     </thead>
+     {% else %}
+     <h2>No Record Found</h2>
+     {%endif%}
+     {%for books in book%}
+     <tr>
+         <td>{{books.Bcode}}</td>
+         <td>{{books.Btitle}}</td>
+         <td>{{books.Bauthor}}</td>
+         <td>{{books.Bpublisher}}</td>
+     </tr>
+     {% endfor %}
+     </table>
+</div>
+</body>
+</html>
